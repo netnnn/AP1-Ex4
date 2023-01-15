@@ -7,7 +7,7 @@
 using namespace std;
 #include "string"
 
-class defaultIO {
+class DefaultIO {
     public:
     virtual string read();
     virtual void write(string string);
