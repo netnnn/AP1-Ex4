@@ -20,8 +20,16 @@ public:
         this->description = des;
     }
 
+    string getDescription() {
+        return this->description;
+    };
+
     void setDio(DefaultIO dio1){
         this->dio = dio1;
+    }
+
+    DefaultIO getDio() {
+        return this->dio;
     }
 };
 
