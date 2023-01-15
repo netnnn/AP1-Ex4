@@ -28,7 +28,7 @@ add_executable(AP1_Ex4
         Client.cpp
         Client.cpp
         Server.cpp
-        defaultIO.cpp
-        defaultIO.h
-        standardIO.cpp
-        standardIO.h)
+        DefaultIO.cpp
+        DefaultIO.h
+        StandardIO.cpp
+        StandardIO.h)
