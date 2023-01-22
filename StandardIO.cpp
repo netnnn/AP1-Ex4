@@ -1,15 +1,13 @@
 #include "StandardIO.h"
-#include "DefaultIO.h"
 #include <iostream>
-
-
 using namespace std;
-string read() {
+
+string StandardIO::read() {
     string line;
     getline(cin, line);
     return line;
 }
 
-void write(string str) {
+void StandardIO::write(string str) {
     cout << str << endl;
 }
