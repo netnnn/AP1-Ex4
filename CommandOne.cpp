@@ -12,7 +12,6 @@ void CommandOne::execute(){
     file.open(fp);
 
     if(!file) {
-        //cout << "invalid input" << endl;
         this->getDio().write("invalid input");
         return;
     } else {
@@ -27,7 +26,6 @@ void CommandOne::execute(){
 
     if(!file) {
         this->getDio().write("invalid input");
-        file.close();
         return;
     } else {
         this->getDio().write("Upload complete.");
@@ -35,6 +33,4 @@ void CommandOne::execute(){
     file.close();
 }
 
-CommandOne::CommandOne(string des, DefaultIO dio1): Command(des, dio1) {
-    this->setDescription("upload an unclassified csv data file");
-}
+CommandOne::CommandOne(string des, DefaultIO dio1): Command(des, dio1) {}
