@@ -18,17 +18,19 @@ bool copyFile(string src, string dst) {
             }
 
         } catch (exception e) {
+            ini_file.close();
+            out_file.close();
             return false; //return there's an error.
         }
-
+        ini_file.close();
+        out_file.close();
         return true; //return upload completed.
     }
     else {
+        ini_file.close();
+        out_file.close();
         return false; //return there's an error.
     }
-    // Closing file
-    ini_file.close();
-    out_file.close();
 }
 
 
