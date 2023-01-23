@@ -4,10 +4,15 @@ using namespace std;
 #include "Command.h"
 #include "DefaultIO.h"
 #include <string>
+#include <fstream>
+
 using namespace std;
 
 class CommandOne : public Command{
 public:
+    string trainPath = NULL;
+    string localPath = NULL;
+
     void execute();
 
     CommandOne(string des, DefaultIO dio1);
