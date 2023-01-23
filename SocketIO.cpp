@@ -13,48 +13,58 @@ string SocketIO::read() {
         initialized = true;
         int read_bytes = recv(other_sock, recv_buffer, 4096, 0);
         if (read_bytes == 0) {
-            recv_buffer[0] = '\0';
+            close(other_sock);
+            return nullptr;
         }
         if (read_bytes < 0) {
+            close(other_sock);
             cout << "error reading message" << endl;
-            recv_buffer[0] = '\0';
+            return nullptr;
+        }
+    }
+    else {
+        char temp[4096];
+        strncpy(temp, recv_buffer + offset + 1, 4095 - offset);
+        strncpy(recv_buffer, temp, 4095 - offset);
+        int read_bytes = recv(other_sock, recv_buffer + 4095-offset, offset+1, 0);
+        if (read_bytes == 0) {
+            close(other_sock);
+            return nullptr;
+        }
+        if (read_bytes < 0) {
+            close(other_sock);
+            cout << "error reading message" << endl;
+            return nullptr;
         }
     }
 
-    int i = 0;
-    while (i < 4096) {
-        if (recv_buffer[i] == '\0'){
+    offset = 0;
+    while (offset < 4096) {
+        if (recv_buffer[offset] == '\0'){
             break;
         }
-        ++i;
+        ++offset;
     }
-    if(i >= 4096) {
+    if(offset >= 4096) {
         throw new exception;
     }
 
     string s(recv_buffer);
-
-    char temp[4096];
-    strncpy(temp, recv_buffer + i + 1, 4095 - i);
-    strncpy(recv_buffer, temp, 4095 - i);
-    int read_bytes = recv(other_sock, recv_buffer + 4095-i, i+1, 0);
-    if (read_bytes == 0) {
-        recv_buffer[0] = '\0';
-    }
-    if (read_bytes < 0) {
-        cout << "error reading message" << endl;
-        recv_buffer[0] = '\0';
-    }
-
     return s;
 }
 
 void SocketIO::write(string string) {
+    int sent_bytes = send(other_sock, string.c_str(), string.length(), 0);
+    if (sent_bytes < 0) {
+        cout << "error sending to client" << endl;
+        close(other_sock);
+    }
     return;
 }
 
 SocketIO::SocketIO(int other_sock){
     this->other_sock = other_sock;
+    this->offset = 0;
     memset(recv_buffer, '\0', sizeof(recv_buffer));
     this->initialized = false;
 

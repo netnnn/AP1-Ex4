@@ -10,6 +10,7 @@ using namespace std;
 class SocketIO {
     private:
     bool initialized;
+    int offset;
     int other_sock;
     char recv_buffer[4096];
 
