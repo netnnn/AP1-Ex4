@@ -45,6 +45,7 @@ void CommandOne::execute(){
 
     if(!file) {
         this->getDio().write("invalid input");
+        file.close();
         return;
     } else {
         string dst = "trainVectors.csv";
@@ -53,6 +54,8 @@ void CommandOne::execute(){
             this->getDio().write("Upload complete.");
         } else {
             this->getDio().write("invalid input");
+            file.close();
+            return;
         }
     }
     file.close();
@@ -64,6 +67,7 @@ void CommandOne::execute(){
 
     if(!file) {
         this->getDio().write("invalid input");
+        file.close();
         return;
     } else {
         string dst = "testVectors.csv";
@@ -72,9 +76,12 @@ void CommandOne::execute(){
             this->getDio().write("Upload complete.");
         } else {
             this->getDio().write("invalid input");
+            file.close();
+            return;
         }
     }
     file.close();
+    return;
 }
 
 CommandOne::CommandOne(string des, DefaultIO dio1): Command(des, dio1) {}
