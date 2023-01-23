@@ -2,24 +2,9 @@
 #include "Command.h"
 #include "DefaultIO.h"
 #include <string>
-#include <fstream>
 #include <filesystem>
-#include "CanberraDistance.h"
-#include "ChebyshevDistance.h"
-#include "MinkowskiDistance.h"
-#include "EuclidianDistance.h"
-#include "ManhattanDistance.h"
-#include "StrToVector.h"
-#include "IfstreamToMap.h"
-#include "Distance.h"
-#include "KNN.h"
 #include <vector>
-#include <iostream>
-#include "string.h"
-#include <stdio.h>
-#include <list>
-#include <map>
-#include <cstring>
+
 
 
 void CommandFour::execute() {
