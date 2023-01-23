@@ -1,13 +1,14 @@
 #ifndef AP1_EX4_SOCKETIO_H
 #define AP1_EX4_SOCKETIO_H
 using namespace std;
+#include "DefaultIO.h"
 #include <string>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
 
-class SocketIO {
+class SocketIO : public DefaultIO{
     private:
     bool initialized;
     int offset;
