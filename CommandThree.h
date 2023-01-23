@@ -21,8 +21,8 @@ public:
     Distance* distance;
     string trainPath;
     string localPath;
-
-
+    vector<string> vectorTypes;
+    vector<int> linesNumber;
 
     void execute();
 

@@ -27,6 +27,7 @@ void CommandThree::execute() {
     file.open(this->trainPath);
     if(!file) {
         this->getDio().write("please upload data");
+        file.close();
         return;
     }
     string line1;
@@ -51,14 +52,17 @@ void CommandThree::execute() {
     file.open(this->localPath);
     if(!file) {
         this->getDio().write("please upload data");
+        file.close();
         return;
     }
     string line;
     vector<string> vecTypes;
+    vector<int> lineNums;
+    int j = -1;
     while(getline(file,line)){
         vector<string> vec = StrToVector::strToVector(line, ',');
         vector<double> doubleVec;
-        int i = 0;
+        int i;
         for (i = 0; i < vecLength; ++i) {
             try {
                 double d = stod(vecStr[i]);
@@ -68,6 +72,7 @@ void CommandThree::execute() {
                 break;
             }
         }
+        j++;
         if (i != vecLength) continue;
 
         list<vector<double>> KDistanceList;
@@ -77,8 +82,12 @@ void CommandThree::execute() {
         string maxType;
         maxType = KNN::findVectorType(KDistanceList, vecMap);
         vecTypes.push_back(maxType);
+        lineNums.push_back(j);
     }
+    this->vectorTypes = vecTypes;
+    this->linesNumber = lineNums;
     this->getDio().write("classifying data complete");
+    file.close();
     return;
 }
 
