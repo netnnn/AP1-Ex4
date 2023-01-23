@@ -10,15 +10,15 @@ using namespace std;
 
 class SocketIO : public DefaultIO{
     private:
-    bool initialized;
-    int offset;
-    int other_sock;
-    char recv_buffer[4096];
+        bool initialized;
+        int offset;
+        int other_sock;
+        char recv_buffer[4096];
 
     public:
-    virtual string read();
-    virtual void write(string string);
-    SocketIO(int other_sock);
+        string read();
+        void write(string string);
+        SocketIO(int other_sock);
 };
 
 
