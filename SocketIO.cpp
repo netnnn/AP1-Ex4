@@ -5,10 +5,21 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <cstring>
+#include <iostream>
 using namespace std;
 
 string SocketIO::read() {
-    int read_bytes = recv(other_sock, recv_buffer, 4096, 0);
+    if (!initialized){
+        initialized = true;
+        int read_bytes = recv(other_sock, recv_buffer, 4096, 0);
+        if (read_bytes == 0) {
+            recv_buffer[0] = '\0';
+        }
+        if (read_bytes < 0) {
+            cout << "error reading message" << endl;
+            recv_buffer[0] = '\0';
+        }
+    }
 
     int i = 0;
     while (i < 4096) {
@@ -24,9 +35,16 @@ string SocketIO::read() {
     string s(recv_buffer);
 
     char temp[4096];
-
     strncpy(temp, recv_buffer + i + 1, 4095 - i);
     strncpy(recv_buffer, temp, 4095 - i);
+    int read_bytes = recv(other_sock, recv_buffer + 4095-i, i+1, 0);
+    if (read_bytes == 0) {
+        recv_buffer[0] = '\0';
+    }
+    if (read_bytes < 0) {
+        cout << "error reading message" << endl;
+        recv_buffer[0] = '\0';
+    }
 
     return s;
 }
@@ -38,5 +56,6 @@ void SocketIO::write(string string) {
 SocketIO::SocketIO(int other_sock){
     this->other_sock = other_sock;
     memset(recv_buffer, '\0', sizeof(recv_buffer));
+    this->initialized = false;
 
 }
