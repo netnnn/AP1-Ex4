@@ -91,9 +91,9 @@ void CommandThree::execute() {
     return;
 }
 
-CommandThree::CommandThree(string des, DefaultIO dio1, int k1, Distance* dis,
-                           string train, string local): Command(des, dio1) {
-    this->k = k1;
+CommandThree::CommandThree(DefaultIO dio, int k, Distance* dis,
+                           string train, string local): Command("3. classify data", dio) {
+    this->k = k;
     this->distance = dis;
     this->trainPath = train;
     this->localPath = local;

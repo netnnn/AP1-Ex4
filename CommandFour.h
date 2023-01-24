@@ -24,7 +24,7 @@ public:
 
     void execute();
 
-    CommandFour(string des, DefaultIO dio1, string train, string local, vector<string> type, vector<int> lines);
+    CommandFour(DefaultIO dio, string train, string local, vector<string> type, vector<int> lines);
 
 };
 

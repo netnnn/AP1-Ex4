@@ -45,8 +45,8 @@ void CommandFour::execute() {
 
 
 
-CommandFour::CommandFour(string des, DefaultIO dio1, string train, string local,
-                         vector<string> type, vector<int> lines): Command(des, dio1) {
+CommandFour::CommandFour(DefaultIO dio, string train, string local,
+                         vector<string> type, vector<int> lines): Command("display results", dio) {
     this->trainPath = train;
     this->localPath = local;
     this->vectorTypes = type;

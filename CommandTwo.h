@@ -25,7 +25,7 @@ public:
 
     void execute();
 
-    CommandTwo(string des, DefaultIO dio1);
+    CommandTwo(DefaultIO dio);
 };
 
 

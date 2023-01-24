@@ -15,7 +15,7 @@ public:
 
     void execute();
 
-    CommandOne(string des, DefaultIO dio1);
+    CommandOne(DefaultIO dio);
 };
 
 #endif //AP1_EX4_COMMANDONE_H

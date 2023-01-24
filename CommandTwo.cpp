@@ -117,4 +117,4 @@ void CommandTwo::execute() {
 
 }
 
-CommandTwo::CommandTwo(string des, DefaultIO dio1): Command(des, dio1) {};
+CommandTwo::CommandTwo(DefaultIO dio): Command("2. algorithm settings", dio) {};
