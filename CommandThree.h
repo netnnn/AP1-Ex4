@@ -26,7 +26,7 @@ public:
 
     void execute();
 
-    CommandThree(string des, DefaultIO dio1, int k1, Distance* dis, string train, string local);
+    CommandThree(DefaultIO dio, int k1, Distance* dis, string train, string local);
 
 };
 

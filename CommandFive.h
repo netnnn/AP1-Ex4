@@ -25,7 +25,7 @@ public:
 
     void execute();
 
-    CommandFive(string des, DefaultIO dio1, string train, string local, vector<string> type, vector<int> lines);
+    CommandFive(DefaultIO dio1, string train, string local, vector<string> type, vector<int> lines);
 
 };
 

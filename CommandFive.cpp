@@ -58,8 +58,8 @@ void CommandFive::execute() {
 
 
 
-CommandFive::CommandFive(string des, DefaultIO dio1, string train, string local,
-                         vector<string> type, vector<int> lines): Command(des, dio1) {
+CommandFive::CommandFive(DefaultIO dio, string train, string local,
+                         vector<string> type, vector<int> lines): Command("5. download results", dio) {
     this->trainPath = train;
     this->localPath = local;
     this->vectorTypes = type;
