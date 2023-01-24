@@ -1,15 +1,30 @@
 #include "CLI.h"
 #include <vector>
 #include <string>
+#include <thread>
+#include "CommandOne.h"
+#include "CommandTwo.h"
+#include "CommandThree.h"
+#include "CommandFour.h"
+#include "CommandFive.h"
 using namespace std;
 
-CLI::CLI(DefaultIO dio, CommandOne cmd1, CommandTwo cmd2, CommandThree cmd3,CommandFour cmd4,CommandFive cmd5){
+CLI::CLI(DefaultIO dio){
     this->dio = dio;
+    CommandOne cmd1(dio);
+    CommandTwo cmd2(dio);
+    CommandThree cmd3(dio);
+    CommandFour cmd4(dio);
+    CommandFive cmd5(dio);
     cmdList.push_back(cmd1);
     cmdList.push_back(cmd2);
     cmdList.push_back(cmd3);
     cmdList.push_back(cmd4);
     cmdList.push_back(cmd5);
+}
+
+void CLI::choice5() {
+    cmdList[4].execute();
 }
 
 void CLI::start(){
@@ -31,8 +46,7 @@ void CLI::start(){
         } else if (choice == "4") {
             cmdList[3].execute();
         } else if (choice == "5") {
-            //new thread
-            cmdList[4].execute();
+            thread t(choice5);
         }
     }
 }

@@ -15,9 +15,11 @@ private:
     DefaultIO dio;
     vector<Command> cmdList;
 public:
+
+    void choice5();
     void start();
 
-    CLI(DefaultIO dio, CommandOne cmd1, CommandTwo cmd2, CommandThree cmd3, CommandFour cmd4, CommandFive cmd5);
+    CLI(DefaultIO dio);
 };
 
 #endif
