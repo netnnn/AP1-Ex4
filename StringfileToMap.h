@@ -8,9 +8,9 @@
 
 using namespace std;
 
-class IfstreamToMap{
+class StringfileToMap{
     public:
-    static map<vector<double>, string> ifstreamToMap(string filePath, int vectorSize);
+    static map<vector<double>, string> stringfileToMap(string stringfile, int vectorSize);
 };
 
 #endif

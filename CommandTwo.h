@@ -4,9 +4,7 @@ using namespace std;
 #include "Command.h"
 #include "DefaultIO.h"
 #include <string>
-#include <fstream>
 #include "Distance.h"
-
 #include "CanberraDistance.h"
 #include "ChebyshevDistance.h"
 #include "MinkowskiDistance.h"
@@ -17,15 +15,15 @@ using namespace std;
 using namespace std;
 
 class CommandTwo : public Command{
-public:
-    int k = 5;
-    string disString = "AUC";
-    Distance* distance = new EuclidianDistance();
+    private:
+        int* k;
+        string* disString;
+        Distance** distance;
+    public:
 
+        void execute();
 
-    void execute();
-
-    CommandTwo(DefaultIO dio);
+        CommandTwo(DefaultIO dio, int* k, string* disString, Distance** distance);
 };
 
 

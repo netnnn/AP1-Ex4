@@ -4,29 +4,20 @@ using namespace std;
 #include "Command.h"
 #include "DefaultIO.h"
 #include <string>
-#include <fstream>
-
 #include "Distance.h"
 
-#include "CanberraDistance.h"
-#include "ChebyshevDistance.h"
-#include "MinkowskiDistance.h"
-#include "EuclidianDistance.h"
-#include "ManhattanDistance.h"
-
-
 class CommandThree : public Command{
-public:
-    int k;
-    Distance* distance;
-    string trainPath;
-    string localPath;
-    vector<string> vectorTypes;
-    vector<int> linesNumber;
+    private:
+        int* k;
+        Distance** distance;
+        string* train;
+        string* test;
+        string* testResults;
+    public:
 
-    void execute();
+        void execute();
 
-    CommandThree(DefaultIO dio, int k, Distance* dis, string train, string local);
+        CommandThree(DefaultIO dio, int* k, Distance** dis, string* train, string* test, string* testResults);
 
 };
 

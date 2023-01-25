@@ -3,7 +3,8 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "IfstreamToMap.h"
+#include <sstream>
+#include "StringfileToMap.h"
 #include "StrToVector.h"
 
 using namespace std;
@@ -17,16 +18,10 @@ using namespace std;
  * @param vectorSize size of the vectors in the map.
  * @return map<vector<double>, string> a map of valid vectors of doubles the size requested and their type.
  */
-map<vector<double>, string> IfstreamToMap::ifstreamToMap(string filePath, int vectorSize){
-    ifstream file;
-    map<vector<double>, string> map;
+map<vector<double>, string> StringfileToMap::stringfileToMap(string stringfile, int vectorSize){
 
-    //Try to open the file at the given path.
-    file.open(filePath);
-    if(!file) {
-        cout << "ERROR! File not found" << endl;
-        exit(0);
-    }
+    stringstream file(stringfile);
+    map<vector<double>, string> map;
 
     //Read a line from the file, if its a valid vector of doubles the size requested add it to the map.
     string line;
@@ -56,8 +51,6 @@ map<vector<double>, string> IfstreamToMap::ifstreamToMap(string filePath, int ve
         //Else, insert the vector to the map.
         map.insert({vecDbl, vecStr[i]});
     }
-    //Close the file and return the map.
-    file.close();
     return map;
     
 }
