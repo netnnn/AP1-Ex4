@@ -15,7 +15,7 @@ CLI::CLI(DefaultIO dio){
     CommandTwo cmd2(dio, &k, &disString, &distance);
     CommandThree cmd3(dio, &k, &distance, &train, &test, &testResults);
     CommandFour cmd4(dio, &train, &test, &testResults);
-    CommandFive cmd5(dio);
+    CommandFive cmd5(dio, &train, &test, &testResults);
     cmdList.push_back(cmd1);
     cmdList.push_back(cmd2);
     cmdList.push_back(cmd3);
@@ -28,10 +28,6 @@ CLI::CLI(DefaultIO dio){
     this->test = "";
     this->train = "";
     this->testResults = "";
-}
-
-void CLI::choice5() {
-    cmdList[4].execute();
 }
 
 void CLI::start(){
@@ -53,7 +49,7 @@ void CLI::start(){
         } else if (choice == "4") {
             cmdList[3].execute();
         } else if (choice == "5") {
-            thread t(choice5);
+            cmdList[4].execute();
         }
     }
 }

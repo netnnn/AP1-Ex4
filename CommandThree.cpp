@@ -69,7 +69,6 @@ void CommandThree::execute() {
         *testResults += '\n';
         j++;
     }
-    *testResults += "Done.";
 
     this->getDio().write("classifying data complete");
     return;

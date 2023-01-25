@@ -20,7 +20,8 @@ void CommandFour::execute() {
         return;
     }
 
-    this->getDio().write(*testResults);
+    this->getDio().write(*testResults + "Done.");
+    return;
 }
 
 CommandFour::CommandFour(DefaultIO dio, string* train, string* test, string* testResults): Command("4. display results\n", dio){

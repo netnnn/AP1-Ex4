@@ -4,7 +4,6 @@ using namespace std;
 #include "Command.h"
 #include "DefaultIO.h"
 #include <string>
-#include <fstream>
 #include "Distance.h"
 #include "CanberraDistance.h"
 #include "ChebyshevDistance.h"
@@ -14,16 +13,15 @@ using namespace std;
 
 
 class CommandFive : public Command{
-public:
-    string trainPath;
-    string localPath;
-    vector<string> vectorTypes;
-    vector<int> linesNumbers;
-    string path;
+    private:
+        string* train;
+        string* test;
+        string* testResults;
 
-    void execute();
+    public:
+        void execute();
 
-    CommandFive(DefaultIO dio1, string train, string local, vector<string> type, vector<int> lines);
+        CommandFive(DefaultIO dio, string* train, string* test, string* testResults);
 
 };
 
