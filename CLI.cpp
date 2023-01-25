@@ -13,7 +13,7 @@ CLI::CLI(DefaultIO dio){
     this->dio = dio;
     CommandOne cmd1(dio, &train, &test);
     CommandTwo cmd2(dio, &k, &disString, &distance);
-    CommandThree cmd3(dio);
+    CommandThree cmd3(dio, &k, &distance, &train, &test, &testResults);
     CommandFour cmd4(dio);
     CommandFive cmd5(dio);
     cmdList.push_back(cmd1);
