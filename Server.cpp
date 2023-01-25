@@ -80,11 +80,8 @@ int main(int argv, char* args[]) {
             exit(0);
         }
 
-        SocketIO sockio(client_sock);
-
-        CLI cli(sockio, client_sock);
-
-        thread(runcli, cli);
+        thread t(runcli, client_sock);
+        t.detach();
     }
 
     //Close the server socket
@@ -92,6 +89,8 @@ int main(int argv, char* args[]) {
     return 0;
 }
 
-void runcli(CLI cli){
+void runcli(int client_sock){
+    SocketIO sockio(client_sock);
+    CLI cli(sockio, client_sock);
     cli.start();
 }
