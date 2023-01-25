@@ -19,7 +19,7 @@
 #include <stdio.h>
 #include <list>
 #include <map>
-#include <cstring>
+#include <sstream>
 
 void CommandThree::execute() {
 
@@ -30,7 +30,7 @@ void CommandThree::execute() {
         return;
     }
     string line;
-    istringstream testStream(*test);
+    stringstream testStream(*test);
     int j = 1;
     while(getline(testStream,line)){
         vector<string> vecStr = StrToVector::strToVector(line, ',');
@@ -49,7 +49,7 @@ void CommandThree::execute() {
         }
 
         map<vector<double>, string> vecMap;
-        vecMap = IfstreamToMap::ifstreamToMap(*(this->train), vecLength);
+        vecMap = StringfileToMap::stringfileToMap(*(this->train), vecLength);
         //If there are no valid vectors to compare distance with, it's an error.
         if (vecMap.size() == 0) {
             this->getDio().write("vector doesnt not match the training set");
@@ -72,7 +72,7 @@ void CommandThree::execute() {
         j++;
     }
     *testResults += "Done.";
-    
+
     this->getDio().write("classifying data complete");
     return;
 }
