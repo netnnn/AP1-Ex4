@@ -40,7 +40,7 @@ string SocketIO::read() {
 
     offset = 0;
     while (offset < 4096) {
-        if (recv_buffer[offset] == '\0'){
+        if (recv_buffer[offset] == '\n'){
             break;
         }
         ++offset;

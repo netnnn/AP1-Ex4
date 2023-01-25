@@ -19,15 +19,16 @@
 void CommandTwo::execute() {
     bool kIsValid = true;
     bool disIsValid = true;
-    string kStr = to_string(this->k);
+    string kStr = to_string(*(this->k));
     string printKData = "The current KNN parameters are: K = " + kStr;
-    string printDisData = ", distance metric = " + this->disString;
+    string printDisData = ", distance metric = " + *(this->disString);
     this->getDio().write(printKData + printDisData);
 
     string userInput = this->getDio().read();
     if (userInput == "") {
         return;
     }
+
     vector<string> allStr;
     char* char_array = new char[userInput.length() + 1];
 
@@ -107,9 +108,9 @@ void CommandTwo::execute() {
         this->getDio().write("invalid value for metric\n");
     }
     if (kIsValid && disIsValid){
-        this->k = userK;
-        this->distance = x;
-        this->disString = disTempStr;
+        *(this->k) = userK;
+        *(this->distance) = x;
+        *(this->disString) = disTempStr;
         return;
     }
 
@@ -117,4 +118,8 @@ void CommandTwo::execute() {
 
 }
 
-CommandTwo::CommandTwo(DefaultIO dio): Command("2. algorithm settings", dio) {};
+CommandTwo::CommandTwo(DefaultIO dio, int* k, string* disString, Distance** distance): Command("2. algorithm settings", dio) {
+    this->k = k;
+    this->disString = disString;
+    this->distance = distance;
+};

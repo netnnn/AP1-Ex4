@@ -17,15 +17,15 @@ using namespace std;
 using namespace std;
 
 class CommandTwo : public Command{
-public:
-    int k = 5;
-    string disString = "AUC";
-    Distance* distance = new EuclidianDistance();
+    private:
+        int* k;
+        string* disString;
+        Distance** distance;
+    public:
 
+        void execute();
 
-    void execute();
-
-    CommandTwo(DefaultIO dio);
+        CommandTwo(DefaultIO dio, int* k, string* disString, Distance** distance);
 };
 
 

@@ -11,15 +11,20 @@
 using namespace std;
 
 class CLI{
-private:
-    DefaultIO dio;
-    vector<Command> cmdList;
-public:
+    private:
+        DefaultIO dio;
+        vector<Command> cmdList;
+    public:
+        int k;
+        string disString;
+        Distance* distance;
+        string train;
+        string test;
+        
+        void choice5();
+        void start();
 
-    void choice5();
-    void start();
-
-    CLI(DefaultIO dio);
+        CLI(DefaultIO dio);
 };
 
 #endif

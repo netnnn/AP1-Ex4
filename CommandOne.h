@@ -9,13 +9,13 @@ using namespace std;
 using namespace std;
 
 class CommandOne : public Command{
+private:
+    string* train;
+    string* test;
 public:
-    string trainPath = NULL;
-    string localPath = NULL;
-
     void execute();
 
-    CommandOne(DefaultIO dio);
+    CommandOne(DefaultIO dio, string* train, string* test);
 };
 
 #endif //AP1_EX4_COMMANDONE_H

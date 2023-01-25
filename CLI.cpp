@@ -11,8 +11,8 @@ using namespace std;
 
 CLI::CLI(DefaultIO dio){
     this->dio = dio;
-    CommandOne cmd1(dio);
-    CommandTwo cmd2(dio);
+    CommandOne cmd1(dio, &train, &test);
+    CommandTwo cmd2(dio, &k, &disString, &distance);
     CommandThree cmd3(dio);
     CommandFour cmd4(dio);
     CommandFive cmd5(dio);
@@ -21,6 +21,12 @@ CLI::CLI(DefaultIO dio){
     cmdList.push_back(cmd3);
     cmdList.push_back(cmd4);
     cmdList.push_back(cmd5);
+
+    this->k = 5;
+    this->disString = "AUC";
+    this->distance = new EuclidianDistance();
+    this->test = "";
+    this->train = "";
 }
 
 void CLI::choice5() {

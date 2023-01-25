@@ -4,84 +4,39 @@
 #include <fstream>
 #include <iostream>
 
-bool copyFile(string src, string dst) {
-    string line;
-    // For writing text file
-    // Creating ofstream & ifstream class object
-    ifstream ini_file{src}; // This is the original file
-    ofstream out_file{ dst };
-    if (ini_file && out_file) {
-        try {
-
-            while (getline(ini_file, line)) {
-                out_file << line << "\n";
-            }
-
-        } catch (exception e) {
-            ini_file.close();
-            out_file.close();
-            return false; //return there's an error.
-        }
-        ini_file.close();
-        out_file.close();
-        return true; //return upload completed.
-    }
-    else {
-        ini_file.close();
-        out_file.close();
-        return false; //return there's an error.
-    }
-}
-
-
 void CommandOne::execute(){
-    ifstream file;
-    string fp;
+    string line;
 
     this->getDio().write("Please upload your local train CSV file.");
-    fp = this->getDio().read();
 
-    file.open(fp);
-
-    if(!file) {
-        this->getDio().write("invalid input");
-        file.close();
-        return;
-    } else {
-        string dst = "trainVectors.csv";
-        if (copyFile(fp, dst)) {
-            this->trainPath = dst;
-            this->getDio().write("Upload complete.");
-        } else {
-            this->getDio().write("invalid input");
-            file.close();
-            return;
-        }
+    line = this->getDio().read();
+    if(line == "") {
+        cout << "invalid input" << endl;
     }
-    file.close();
+
+    while(line != ""){
+        *train += line;
+        *train += '\n';
+        line = this->getDio().read();
+    }
 
     this->getDio().write("Please upload your local test CSV file.");
-    fp = this->getDio().read();
 
-    file.open(fp);
-
-    if(!file) {
-        this->getDio().write("invalid input");
-        file.close();
-        return;
-    } else {
-        string dst = "testVectors.csv";
-        if (copyFile(fp, dst)) {
-            this->localPath = dst;
-            this->getDio().write("Upload complete.");
-        } else {
-            this->getDio().write("invalid input");
-            file.close();
-            return;
-        }
+    line = this->getDio().read();
+    if(line == "") {
+        cout << "invalid input" << endl;
     }
-    file.close();
+
+    while(line != ""){
+        *test += line;
+        *test += '\n';
+        line = this->getDio().read();
+    }
+
     return;
 }
 
-CommandOne::CommandOne(DefaultIO dio): Command("1. upload an unclassified csv data file", dio) {}
+CommandOne::CommandOne(DefaultIO dio, string* train, string* test): Command("1. upload an unclassified csv data file", dio) {
+    this->train = train;
+    this->test = test;
+}
