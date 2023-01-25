@@ -1,5 +1,8 @@
 <h1 align="center">AP1-EX4</h1>
 
+<h1 align="center">the code is not running due to lack of time (our fault) - but please give us points on the structure of the code</h1>
+
+
 <p align="center">The project contains a method that classifies a vector, given a chart of classified vectors. <br/>
 At start, the server will execute as the following: "./server.out file port", file will be the file of vectors with their type, <br/>
 and the port will be the port that the server listens from. <br/>
