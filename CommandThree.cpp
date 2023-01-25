@@ -50,7 +50,7 @@ void CommandThree::execute() {
         vecMap = StringfileToMap::stringfileToMap(*(this->train), vecLength);
         //If there are no valid vectors to compare distance with, it's an error.
         if (vecMap.size() == 0) {
-            this->getDio().write("vector doesnt not match the training set");
+            this->getDio().write("vector does not match the training set");
             return;
         }
         int tempK = *(this->k);
