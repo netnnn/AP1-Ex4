@@ -5,9 +5,7 @@ using namespace std;
 #include "DefaultIO.h"
 #include <string>
 #include <fstream>
-
 #include "Distance.h"
-
 #include "CanberraDistance.h"
 #include "ChebyshevDistance.h"
 #include "MinkowskiDistance.h"

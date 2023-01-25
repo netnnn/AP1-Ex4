@@ -4,27 +4,23 @@ using namespace std;
 #include "Command.h"
 #include "DefaultIO.h"
 #include <string>
-#include <fstream>
-
 #include "Distance.h"
-
 #include "CanberraDistance.h"
 #include "ChebyshevDistance.h"
 #include "MinkowskiDistance.h"
 #include "EuclidianDistance.h"
 #include "ManhattanDistance.h"
 
-
 class CommandFour : public Command{
-public:
-    string trainPath;
-    string localPath;
-    vector<string> vectorTypes;
-    vector<int> linesNumbers;
+    private:
+        string* train;
+        string* test;
+        string* testResults;
 
-    void execute();
+    public:
+        void execute();
 
-    CommandFour(DefaultIO dio, string train, string local, vector<string> type, vector<int> lines);
+        CommandFour(DefaultIO dio, string* train, string* test, string* testResults);
 
 };
 

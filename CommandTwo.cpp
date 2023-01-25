@@ -12,7 +12,7 @@
 #include "EuclidianDistance.h"
 #include "ManhattanDistance.h"
 #include "StrToVector.h"
-#include "IfstreamToMap.h"
+#include "StringfileToMap.h"
 #include "Distance.h"
 
 
@@ -118,7 +118,7 @@ void CommandTwo::execute() {
 
 }
 
-CommandTwo::CommandTwo(DefaultIO dio, int* k, string* disString, Distance** distance): Command("2. algorithm settings", dio) {
+CommandTwo::CommandTwo(DefaultIO dio, int* k, string* disString, Distance** distance): Command("2. algorithm settings\n", dio) {
     this->k = k;
     this->disString = disString;
     this->distance = distance;

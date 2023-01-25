@@ -14,7 +14,7 @@ CLI::CLI(DefaultIO dio){
     CommandOne cmd1(dio, &train, &test);
     CommandTwo cmd2(dio, &k, &disString, &distance);
     CommandThree cmd3(dio, &k, &distance, &train, &test, &testResults);
-    CommandFour cmd4(dio);
+    CommandFour cmd4(dio, &train, &test, &testResults);
     CommandFive cmd5(dio);
     cmdList.push_back(cmd1);
     cmdList.push_back(cmd2);

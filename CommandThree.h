@@ -4,16 +4,7 @@ using namespace std;
 #include "Command.h"
 #include "DefaultIO.h"
 #include <string>
-#include <fstream>
-
 #include "Distance.h"
-
-#include "CanberraDistance.h"
-#include "ChebyshevDistance.h"
-#include "MinkowskiDistance.h"
-#include "EuclidianDistance.h"
-#include "ManhattanDistance.h"
-
 
 class CommandThree : public Command{
     private:
@@ -22,8 +13,6 @@ class CommandThree : public Command{
         string* train;
         string* test;
         string* testResults;
-        vector<string> vectorTypes;
-        vector<int> linesNumber;
     public:
 
         void execute();

@@ -2,15 +2,13 @@
 #include "Command.h"
 #include "DefaultIO.h"
 #include <string>
-#include <fstream>
-#include <filesystem>
 #include "CanberraDistance.h"
 #include "ChebyshevDistance.h"
 #include "MinkowskiDistance.h"
 #include "EuclidianDistance.h"
 #include "ManhattanDistance.h"
 #include "StrToVector.h"
-#include "IfstreamToMap.h"
+#include "StringfileToMap.h"
 #include "Distance.h"
 #include "KNN.h"
 #include <vector>
@@ -78,7 +76,7 @@ void CommandThree::execute() {
 }
 
 CommandThree::CommandThree(DefaultIO dio, int* k, Distance** dis,
-                           string* train, string* test, string* testResults): Command("3. classify data", dio) {
+                           string* train, string* test, string* testResults): Command("3. classify data\n", dio) {
     this->k = k;
     this->distance = dis;
     this->train = train;

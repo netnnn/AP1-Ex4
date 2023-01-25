@@ -1,7 +1,5 @@
 #include "CommandOne.h"
 #include "Command.h"
-#include <filesystem>
-#include <fstream>
 #include <iostream>
 
 void CommandOne::execute(){
@@ -40,7 +38,7 @@ void CommandOne::execute(){
     return;
 }
 
-CommandOne::CommandOne(DefaultIO dio, string* train, string* test): Command("1. upload an unclassified csv data file", dio) {
+CommandOne::CommandOne(DefaultIO dio, string* train, string* test): Command("1. upload an unclassified csv data file\n", dio) {
     this->train = train;
     this->test = test;
 }
