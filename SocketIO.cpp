@@ -65,7 +65,7 @@ void SocketIO::write(string string) {
 SocketIO::SocketIO(int other_sock){
     this->other_sock = other_sock;
     this->offset = 0;
-    memset(recv_buffer, '\0', sizeof(recv_buffer));
+    memset(recv_buffer, '\n', sizeof(recv_buffer));
     this->initialized = false;
 
 }

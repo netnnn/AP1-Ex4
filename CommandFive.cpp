@@ -10,17 +10,17 @@ void CommandFive::execute() {
     string path = this->getDio().read();
 
     if(*train == "") {
-        this->getDio().write("please upload data");
+        this->getDio().write("please upload data\n");
         return;
     }
 
     if(*test == "") {
-        this->getDio().write("please upload data");
+        this->getDio().write("please upload data\n");
         return;
     }
 
     if (*testResults == "") {
-        this->getDio().write("please classify the data");
+        this->getDio().write("please classify the data\n");
         return;
     }
     

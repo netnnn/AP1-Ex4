@@ -5,6 +5,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
+#include "SocketIO.h"
 using namespace std;
 
 /**
@@ -55,62 +56,35 @@ int main(int argv, char* args[]) {
         exit(0);
     }
 
-    //Reading a new line from the user
-    string newLine;
-    char recv_buffer[4096];
-    /* Endless loop which reads a line from the user, until a -1 is given. it sends each line to the server
-    and prints the type it returned based on the k closest neighbors if successful. else, it prints the 
-    input was invalid. */
-    while (true) {
-        //Get a new line, if its -1, close the socket.
-        getline(cin, newLine);
-        if (newLine == "-1") {
+    SocketIO connection(sock);
+    while(true){
+        string serverLine = connection.read();
+        while(serverLine != ""){
+            cout << serverLine;
+            serverLine = connection.read();
+        }
+        //Reading a new line from the user
+        string line;
+        getline(cin, line);
+        connection.write(line);
+
+        if(line == "1"){
+            
+
+        } else if(line == "2"){
+
+        } else if(line == "3"){
+
+        } else if(line == "4"){
+
+        } else if(line == "5"){
+
+        } else if(line == "8"){
+            close(sock);
             break;
-        }
-        //If the line is empty, its invalid
-        if (newLine == "") {
+        } else {
             cout << "invalid input" << endl;
-            continue;
         }
-        //Check if the line is just spaces: if the number of space is the length of the string, its invalid.
-        int numOfSpaces = 0;
-        for(int i = 0; i < newLine.length(); i++) {
-            if (newLine[i] == ' ') {
-                numOfSpaces++;
-            }
-        }
-        if (numOfSpaces == newLine.length()) {
-            cout << "invalid input" << endl;
-            continue;
-        }
-        //Send the message to the server
-        const char* data_addr = newLine.c_str();
-        int data_len = strlen(data_addr);
-        int sent_bytes = send(sock, data_addr, data_len, 0);
-        if (sent_bytes < 0) {
-            cout << "error sending message" << endl;
-            close(sock);
-            exit(0);
-        }
-        //Receive the type from the server
-        int expected_data_len = sizeof(recv_buffer);
-        memset(recv_buffer, '\0', sizeof(recv_buffer));
-        int read_bytes = recv(sock, recv_buffer, expected_data_len, 0);
-        if (read_bytes == 0) {
-            close(sock);
-            continue;
-        }
-        if (read_bytes < 0) {
-            cout << "error reading message" << endl;
-            close(sock);
-            exit(0);
-        }
-        //Print the type. If the server sent "invalid input" it prints it.
-        string maxType(recv_buffer);
-        cout << maxType << endl;
-    
     }
-    //Close the client socket.
-    close(sock);
-    return 0;
+    return;
 }

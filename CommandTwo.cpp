@@ -22,7 +22,7 @@ void CommandTwo::execute() {
     string kStr = to_string(*(this->k));
     string printKData = "The current KNN parameters are: K = " + kStr;
     string printDisData = ", distance metric = " + *(this->disString);
-    this->getDio().write(printKData + printDisData);
+    this->getDio().write(printKData + printDisData + '\n');
 
     string userInput = this->getDio().read();
     if (userInput == "") {

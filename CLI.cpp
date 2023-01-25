@@ -38,6 +38,7 @@ void CLI::start(){
         for (Command cmd : cmdList) {
             message.append(cmd.getDescription());
         }
+        message.append("8. exit\n");
         this->dio.write(message);
 
         string choice = this->dio.read();

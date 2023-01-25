@@ -24,7 +24,7 @@ void CommandThree::execute() {
     *testResults = "";
 
     if(*train == "" || *test == "") {
-        this->getDio().write("please upload data");
+        this->getDio().write("please upload data\n");
         return;
     }
     string line;
@@ -41,7 +41,7 @@ void CommandThree::execute() {
                 doubleVec.push_back(d);
             }
             catch (exception e) {
-                this->getDio().write("invalid input");
+                this->getDio().write("invalid input\n");
                 return;
             }
         }
@@ -50,7 +50,7 @@ void CommandThree::execute() {
         vecMap = StringfileToMap::stringfileToMap(*(this->train), vecLength);
         //If there are no valid vectors to compare distance with, it's an error.
         if (vecMap.size() == 0) {
-            this->getDio().write("vector does not match the training set");
+            this->getDio().write("vector does not match the training set\n");
             return;
         }
         int tempK = *(this->k);
@@ -70,7 +70,7 @@ void CommandThree::execute() {
         j++;
     }
 
-    this->getDio().write("classifying data complete");
+    this->getDio().write("classifying data complete\n");
     return;
 }
 

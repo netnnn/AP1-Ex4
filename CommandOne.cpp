@@ -5,7 +5,7 @@
 void CommandOne::execute(){
     string line;
 
-    this->getDio().write("Please upload your local train CSV file.");
+    this->getDio().write("Please upload your local train CSV file.\n");
 
     line = this->getDio().read();
     if(line == "") {
@@ -18,9 +18,9 @@ void CommandOne::execute(){
         line = this->getDio().read();
     }
 
-    this->getDio().write("Upload complete.");
+    this->getDio().write("Upload complete.\n");
 
-    this->getDio().write("Please upload your local test CSV file.");
+    this->getDio().write("Please upload your local test CSV file.\n");
 
     line = this->getDio().read();
     if(line == "") {
@@ -33,7 +33,7 @@ void CommandOne::execute(){
         line = this->getDio().read();
     }
 
-    this->getDio().write("Upload complete.");
+    this->getDio().write("Upload complete.\n");
 
     return;
 }
