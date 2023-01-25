@@ -28,7 +28,7 @@ int main(int argv, char* args[]) {
 
     int port;
     //If number of arguments is different from 1 its invalid.
-    if (argv != 1) {
+    if (argv != 2) {
         cout << "invalid input" << endl;
         exit(0);
     }
