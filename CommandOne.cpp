@@ -20,6 +20,8 @@ void CommandOne::execute(){
         line = this->getDio().read();
     }
 
+    this->getDio().write("Upload complete.");
+
     this->getDio().write("Please upload your local test CSV file.");
 
     line = this->getDio().read();
@@ -32,6 +34,8 @@ void CommandOne::execute(){
         *test += '\n';
         line = this->getDio().read();
     }
+
+    this->getDio().write("Upload complete.");
 
     return;
 }
