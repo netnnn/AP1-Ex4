@@ -23,16 +23,30 @@
 
 void CommandThree::execute() {
 
+    *testResults = "";
+
     if(*train == "" || *test == "") {
         this->getDio().write("please upload data");
         return;
     }
     string line;
     istringstream testStream(*test);
+    int j = 1;
     while(getline(testStream,line)){
         vector<string> vecStr = StrToVector::strToVector(line, ',');
-        vector<double> doubleVec;
         int vecLength = vecStr.size() - 1;
+        vector<double> doubleVec;
+        int i;
+        for (i = 0; i < vecLength; ++i) {
+            try {
+                double d = stod(vecStr[i]);
+                doubleVec.push_back(d);
+            }
+            catch (exception e) {
+                this->getDio().write("invalid input");
+                return;
+            }
+        }
 
         map<vector<double>, string> vecMap;
         vecMap = IfstreamToMap::ifstreamToMap(*(this->train), vecLength);
@@ -45,38 +59,21 @@ void CommandThree::execute() {
         if (vecMap.size() < tempK) {
             tempK = vecMap.size();
         }
-        
-    }
-    int j = -1;
-    while(getline(file,line)){
-        vector<string> vec = StrToVector::strToVector(line, ',');
-        vector<double> doubleVec;
-        int i;
-        for (i = 0; i < vecLength; ++i) {
-            try {
-                double d = stod(vecStr[i]);
-                doubleVec.push_back(d);
-            }
-            catch (exception e) {
-                break;
-            }
-        }
-        j++;
-        if (i != vecLength) continue;
 
         list<vector<double>> KDistanceList;
         //Get the list of the K closest neighbors
-        KDistanceList = KNN::knnList(doubleVec, this->distance, vecMap, tempK);
-
+        KDistanceList = KNN::knnList(doubleVec, *(this->distance), vecMap, tempK);
         string maxType;
         maxType = KNN::findVectorType(KDistanceList, vecMap);
-        vecTypes.push_back(maxType);
-        lineNums.push_back(j);
+        *testResults += j;
+        *testResults += "   ";
+        *testResults += maxType;
+        *testResults += '\n';
+        j++;
     }
-    this->vectorTypes = vecTypes;
-    this->linesNumber = lineNums;
+    *testResults += "Done.";
+    
     this->getDio().write("classifying data complete");
-    file.close();
     return;
 }
 
