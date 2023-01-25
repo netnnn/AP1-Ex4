@@ -7,9 +7,11 @@
 #include "CommandThree.h"
 #include "CommandFour.h"
 #include "CommandFive.h"
+#include <unistd.h>
 using namespace std;
 
-CLI::CLI(DefaultIO dio){
+CLI::CLI(DefaultIO dio, int socknumber){
+    this->socknumber = socknumber;
     this->dio = dio;
     CommandOne cmd1(dio, &train, &test);
     CommandTwo cmd2(dio, &k, &disString, &distance);
@@ -50,6 +52,9 @@ void CLI::start(){
             cmdList[3].execute();
         } else if (choice == "5") {
             cmdList[4].execute();
+        } else if (choice == "8") {
+            close(socknumber);
+            return;
         }
     }
 }

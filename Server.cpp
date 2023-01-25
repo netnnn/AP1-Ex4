@@ -4,7 +4,7 @@
 #include "EuclidianDistance.h"
 #include "ManhattanDistance.h"
 #include "StrToVector.h"
-#include "IfstreamToMap.h"
+#include "StringfileToMap.h"
 #include "Distance.h"
 #include "KNN.h"
 #include <vector>
@@ -80,24 +80,18 @@ int main(int argv, char* args[]) {
             exit(0);
         }
 
-        pid_t id = fork();
+        SocketIO sockio(client_sock);
 
-        if(id == -1){
-            cout << "error forking" << endl;
-            exit(0);
-        }
-        else if(id = 0){
-            SocketIO sockio(client_sock);
+        CLI cli(sockio, client_sock);
 
-            CLI cli(sockio);
-
-            cli.start();
-        }
-
-        //command8 closes the socket
+        thread(runcli, cli);
     }
 
     //Close the server socket
     close(sock);
     return 0;
+}
+
+void runcli(CLI cli){
+    cli.start();
 }

@@ -12,6 +12,7 @@ using namespace std;
 
 class CLI{
     private:
+        int socknumber;
         DefaultIO dio;
         vector<Command> cmdList;
     public:
@@ -25,7 +26,7 @@ class CLI{
         void choice5();
         void start();
 
-        CLI(DefaultIO dio);
+        CLI(DefaultIO dio, int socknumber);
 };
 
 #endif
