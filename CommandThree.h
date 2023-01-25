@@ -16,17 +16,19 @@ using namespace std;
 
 
 class CommandThree : public Command{
-public:
-    int k;
-    Distance* distance;
-    string trainPath;
-    string localPath;
-    vector<string> vectorTypes;
-    vector<int> linesNumber;
+    private:
+        int* k;
+        Distance** distance;
+        string* train;
+        string* test;
+        string* testResults;
+        vector<string> vectorTypes;
+        vector<int> linesNumber;
+    public:
 
-    void execute();
+        void execute();
 
-    CommandThree(DefaultIO dio, int k, Distance* dis, string train, string local);
+        CommandThree(DefaultIO dio, int* k, Distance** dis, string* train, string* test, string* testResults);
 
 };
 

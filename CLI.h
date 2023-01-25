@@ -20,6 +20,7 @@ class CLI{
         Distance* distance;
         string train;
         string test;
+        string testResults;
         
         void choice5();
         void start();

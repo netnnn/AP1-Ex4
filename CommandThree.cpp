@@ -21,43 +21,32 @@
 #include <map>
 #include <cstring>
 
-
 void CommandThree::execute() {
-    ifstream file;
-    file.open(this->trainPath);
-    if(!file) {
-        this->getDio().write("please upload data");
-        file.close();
-        return;
-    }
-    string line1;
-    getline(file,line1);
-    vector<string> vecStr = StrToVector::strToVector(line1, ',');
-    int vecLength = vecStr.size() - 1;
-    file.close();
 
-    map<vector<double>, string> vecMap;
-    vecMap = IfstreamToMap::ifstreamToMap(this->trainPath, vecLength);
-    //If there are no valid vectors to compare distance with, it's an error.
-    if (vecMap.size() == 0) {
+    if(*train == "" || *test == "") {
         this->getDio().write("please upload data");
-        return;
-    }
-    int tempK = this->k;
-    if (vecMap.size() < tempK) {
-        tempK = vecMap.size();
-    }
-
-
-    file.open(this->localPath);
-    if(!file) {
-        this->getDio().write("please upload data");
-        file.close();
         return;
     }
     string line;
-    vector<string> vecTypes;
-    vector<int> lineNums;
+    istringstream testStream(*test);
+    while(getline(testStream,line)){
+        vector<string> vecStr = StrToVector::strToVector(line, ',');
+        vector<double> doubleVec;
+        int vecLength = vecStr.size() - 1;
+
+        map<vector<double>, string> vecMap;
+        vecMap = IfstreamToMap::ifstreamToMap(*(this->train), vecLength);
+        //If there are no valid vectors to compare distance with, it's an error.
+        if (vecMap.size() == 0) {
+            this->getDio().write("vector doesnt not match the training set");
+            return;
+        }
+        int tempK = *(this->k);
+        if (vecMap.size() < tempK) {
+            tempK = vecMap.size();
+        }
+        
+    }
     int j = -1;
     while(getline(file,line)){
         vector<string> vec = StrToVector::strToVector(line, ',');
@@ -91,10 +80,11 @@ void CommandThree::execute() {
     return;
 }
 
-CommandThree::CommandThree(DefaultIO dio, int k, Distance* dis,
-                           string train, string local): Command("3. classify data", dio) {
+CommandThree::CommandThree(DefaultIO dio, int* k, Distance** dis,
+                           string* train, string* test, string* testResults): Command("3. classify data", dio) {
     this->k = k;
     this->distance = dis;
-    this->trainPath = train;
-    this->localPath = local;
+    this->train = train;
+    this->test = test;
+    this->testResults = testResults;
 }

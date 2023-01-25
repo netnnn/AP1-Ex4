@@ -27,6 +27,7 @@ CLI::CLI(DefaultIO dio){
     this->distance = new EuclidianDistance();
     this->test = "";
     this->train = "";
+    this->testResults = "";
 }
 
 void CLI::choice5() {
